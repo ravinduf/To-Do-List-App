@@ -12,6 +12,8 @@ def index(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
+            task=Task.objects.all().last()
+            task.addTime()
         return redirect('/')
 
     return render(request, 'tasks/list.html',{'tasks':tasks,'form':form})
