@@ -1,14 +1,19 @@
 <h3>To do</h3>
 
 <form method="POST" action="/">{% csrf_token %}
-    {{form.as_p}}
+    {{form.title}}
     <button type="submit" name="create task">Save</button>
 </form>
-
+<br>
 {% for task in tasks %}
     <div>
         <p>{{task}}</p>
         <p>{{task.created_date}}</p>
+        {% if task.status == False %}
+            <p>Not Finished</p>
+        {% else %}
+            <p>Finished</p>
+        {% endif%}
         <a href="{% url 'update_task' pk=task.pk %}"><button>Update</button></a>
     </div>
 {% endfor %}

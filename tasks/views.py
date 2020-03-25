@@ -19,4 +19,12 @@ def index(request):
 def updateTask(request,pk):
     pk=get_object_or_404(Task,pk=pk)
 
-    return render(request,'tasks/update_task.html')
+    form = TaskForm(instance=pk)
+
+    if request.method == "POST":
+        form =TaskForm(request.POST,instance=pk)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    return render(request,'tasks/update_task.html',{'form':form})
