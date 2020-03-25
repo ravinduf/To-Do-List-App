@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from .forms import TaskForm
@@ -15,3 +15,8 @@ def index(request):
         return redirect('/')
 
     return render(request, 'tasks/list.html',{'tasks':tasks,'form':form})
+
+def updateTask(request,pk):
+    pk=get_object_or_404(Task,pk=pk)
+
+    return render(request,'tasks/update_task.html')

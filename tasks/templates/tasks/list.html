@@ -2,12 +2,13 @@
 
 <form method="POST" action="/">{% csrf_token %}
     {{form.as_p}}
-    <input type="submit" name="create task">
+    <button type="submit" name="create task">Save</button>
 </form>
 
 {% for task in tasks %}
     <div>
         <p>{{task}}</p>
         <p>{{task.created_date}}</p>
+        <a href="{% url 'update_task' pk=task.pk %}"><button>Update</button></a>
     </div>
 {% endfor %}
