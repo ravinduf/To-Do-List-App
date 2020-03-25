@@ -28,3 +28,8 @@ def updateTask(request,pk):
             return redirect('/')
 
     return render(request,'tasks/update_task.html',{'form':form})
+
+def deleteTask(request,pk):
+    task = get_object_or_404(Task,pk=pk)
+    task.delete()
+    return redirect('/')
