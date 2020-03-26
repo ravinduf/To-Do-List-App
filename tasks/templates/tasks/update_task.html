@@ -6,7 +6,7 @@
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type=submit name="update_task">Save</button>
+        <button class="btn btn-success" type=submit name="update_task">Save</button>
     </form>
 </div>
 {% endblock %}
