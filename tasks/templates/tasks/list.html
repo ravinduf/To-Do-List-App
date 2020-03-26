@@ -1,9 +1,13 @@
 {% extends 'tasks/base.html' %}
 {% block content%}
+
+{% load crispy_forms_tags %}
+
 <br>
-<div class="container" >
-    <form method="POST" action="/" style="background-color: lavender;">{% csrf_token %}
-        {{form.title}}
+<div class="container p-3" style="background-color: lavender;" >
+    <form method="POST" action="/">{% csrf_token %}
+        
+        {{ form.title }}
         &nbsp;&nbsp;<button class="btn btn-success btn-sm" type="submit" name="create task">Save</button>
     </form>
 </div>
