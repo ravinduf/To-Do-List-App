@@ -1,7 +1,12 @@
-<h3>Update Task</h3>
+{% extends 'tasks/base.html' %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type=submit name="update_task">Save</button>
-</form>
+{% block content%}
+<h3>Update Task</h3>
+<div class="jumbotron">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type=submit name="update_task">Save</button>
+    </form>
+</div>
+{% endblock %}

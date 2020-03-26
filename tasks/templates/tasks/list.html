@@ -1,29 +1,41 @@
 {% extends 'tasks/base.html' %}
 {% block content%}
-<div class="container bg-lavender text-white">
-    <form method="POST" action="/">{% csrf_token %}
+<br>
+<div class="container" >
+    <form method="POST" action="/" style="background-color: lavender;">{% csrf_token %}
         {{form.title}}
         <button type="submit" name="create task">Save</button>
     </form>
 </div>
-<br>
-<div >
-   
-        {% for task in tasks %}
-        <div class="container bg-dark text-white pb-3">
-            <p>{{task}}</p>
-            <p>{{task.created_date}}</p>
-            {% if task.status == False %}
-                <p>Not Finished</p>
-            {% else %}
-                <p>Finished</p>
-            {% endif%}
-            <a href="{% url 'update_task' pk=task.pk %}"><button>Update</button></a>
-            <a href="{% url 'delete_task' pk=task.pk %}"><button onclick="return confirm('Are you sure you want to delete this ?')">delete</button></a>
-        </div>
-        <br>
-        {% endfor %}
+
+
+<table class="container table pt-1 " s>
+    <thead>
+        <tr>
+            <th>Options</th>
+            <th>Task</th>
+            <th>Created Time</th>
+            <th>Status</th>
+        </tr>
+    </thead>
     
+    {% for task in tasks %}
+    <tbody>
+        <tr>
+        <td><a href="{% url 'update_task' pk=task.pk %}"><button>Update</button></a>
+        <a href="{% url 'delete_task' pk=task.pk %}"><button onclick="return confirm('Are you sure you want to delete this ?')">delete</button></a></td>
+        <td>{{task}}</td>
+        <td>{{task.created_date}}</td>
+        {% if task.status == False %}
+            <td>Not Finished</td>
+        {% else %}
+            <td>Finished</td>
+        {% endif%}
+        </tr>
+    </tbody>
     <br>
+    {% endfor %}
+</table>
 </div>
+
 {% endblock %}
